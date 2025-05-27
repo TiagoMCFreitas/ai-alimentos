@@ -1,0 +1,6 @@
+services:
+  ai:
+    image: ai-agents:v1
+    ports:
+      - 5000:8080
+    restart: always
