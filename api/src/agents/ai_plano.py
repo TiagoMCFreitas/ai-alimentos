@@ -122,11 +122,12 @@ class GeradorDePlanoAlimentar(BaseTool):
                                 "dia":{formato_saida}
                     ''''''''
                     preciso que gere para 7 dias
-                    todos os dias da semana, exceto sabado e domingo devem ser retornados com a primeira letra maiuscula e - feira no final
+                    todos os dias da semana, devem ser retornados com a primeira letra maiuscula e - feira no final
                     -------
                     diaSemana-feira
                     -------
 
+                    Sabado e domingo não podem ser retornados com "feira" no final
                     retorne o objeto com a chave ---plano_alimentar_semanal---
 
                     """,
