@@ -58,7 +58,6 @@ class GeradorDePlanoAlimentar(BaseTool):
         objetivo: str,
         peso: float,
         gasto_calorico_basal: float,
-        refeicao: str,
         preferencias: list,
         maximo_calorias_por_refeicao: float,
     ):
@@ -80,7 +79,6 @@ class GeradorDePlanoAlimentar(BaseTool):
                     - Objetivo: {objetivo}
                     - Peso: {peso} kg
                     - Gasto calórico basal: {gasto_calorico_basal} kcal
-                    - Refeição: {refeicao}
                     - Preferencia: {preferencias}
                     - Máximo de calorias por refeição: {maximo_calorias_por_refeicao} kcal
 
@@ -124,17 +122,18 @@ class GeradorDePlanoAlimentar(BaseTool):
                                 "dia":{formato_saida}
                     ''''''''
                     preciso que gere para 7 dias
-                    todos os dias da semana tem que ser retornados com a primeira letra maiuscula e - feira no final
+                    todos os dias da semana, exceto sabado e domingo devem ser retornados com a primeira letra maiuscula e - feira no final
                     -------
                     diaSemana-feira
                     -------
+
+                    retorne o objeto com a chave ---plano_alimentar_semanal---
 
                     """,
             input_variables=[
                 "objetivo",
                 "peso",
                 "gasto_calorico_basal",
-                "refeicao",
                 "preferencias",
                 "maximo_calorias_por_refeicao",
             ],
@@ -149,7 +148,7 @@ class GeradorDePlanoAlimentar(BaseTool):
                 "objetivo": objetivo,
                 "peso": peso,
                 "gasto_calorico_basal": gasto_calorico_basal,
-                "refeicao": refeicao,
+                
                 "preferencias": preferencias,
                 "maximo_calorias_por_refeicao": maximo_calorias_por_refeicao,
             }

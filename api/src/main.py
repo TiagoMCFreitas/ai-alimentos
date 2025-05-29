@@ -4,9 +4,9 @@ import os
 import sys
 
 import uvicorn
-from ai_interpretador_imagem import InterpretadorDeImagem
-from ai_plano import GeradorDePlanoAlimentar
-from ai_refeicoes import GeradorDeRefeicao
+from agents.ai_interpretador_imagem import InterpretadorDeImagem
+from agents.ai_plano import GeradorDePlanoAlimentar
+from agents.ai_refeicoes import GeradorDeRefeicao
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -30,6 +30,14 @@ class PreferenciaUsuario(BaseModel):
     preferencias: list
     maximo_calorias_por_refeicao: float
 
+class PlanoAlimentar(BaseModel):
+    objetivo: str
+    peso: float
+    gasto_calorico_basal: float
+    preferencias: list
+    maximo_calorias_por_refeicao: float
+
+
 
 @app.post("/refeicao")
 async def post_refeicao(preferencias_usuario: PreferenciaUsuario):
@@ -48,14 +56,13 @@ async def post_refeicao(preferencias_usuario: PreferenciaUsuario):
 
 
 @app.post("/plano")
-async def post_plano(preferencias_usuario: PreferenciaUsuario):
+async def post_plano(preferencias_usuario: PlanoAlimentar):
     print(preferencias_usuario)
     gerarPlano = GeradorDePlanoAlimentar().invoke(
         {
             "objetivo": preferencias_usuario.objetivo,
             "peso": preferencias_usuario.peso,
             "gasto_calorico_basal": preferencias_usuario.gasto_calorico_basal,
-            "refeicao": preferencias_usuario.refeicao,
             "preferencias": preferencias_usuario.preferencias,
             "maximo_calorias_por_refeicao": preferencias_usuario.maximo_calorias_por_refeicao,
         }
