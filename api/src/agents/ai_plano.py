@@ -87,9 +87,9 @@ class GeradorDePlanoAlimentar(BaseTool):
                     Retorne uma lista JSON com alimentos sugeridos para essa refeição, considerando as preferencias alimentares do usuario, **use itens da tabela acima mas mescle com as melhores opções que conhece, busando a harmonia entre os alimentos da refeição**.
 
                     Dentre as preferências, escolha a que mais se adeque ao momento da refeição informada
-                    quando {refeicao} for Café da manhã, o horário do dia é pela manhã
-                    quando {refeicao} for almoco, o horário do dia é pela tarde
-                    quando {refeicao} for jantar, o horário do dia é pela noite
+                    quando refeicao for Café da manhã, o horário do dia é pela manhã
+                    quando refeicao for almoco, o horário do dia é pela tarde
+                    quando refeicao for jantar, o horário do dia é pela noite
 
                     Sempre varie nas sugestões
 
