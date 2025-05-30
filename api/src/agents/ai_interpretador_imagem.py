@@ -62,7 +62,7 @@ class InterpretadorDeImagem:
                             "proteinas": "proteinas_do_alimento",
                             "carboidratos": "carboidratos_do_alimento",
                             "gordura": "gordura_do_alimento",
-                            "unidade_de_medida": "unidade_de_medida_do_alimento",
+                            "unidade_medida": "unidade_de_medida_do_alimento",
                             "mensagem": "mensagem_de_explicacao"},
                         ...
                         ]
