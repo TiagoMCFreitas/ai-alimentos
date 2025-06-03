@@ -57,11 +57,11 @@ class InterpretadorDeImagem:
                         {
                         Cada item deve conter: nome, quantidade, calorias (calorias no banco são KCAL), proteinas, carboidratos, gordura, unidade de medida, e uma mensagem de explicação, retornando o porque da escolha do alimento escolhido.
                             "nome": "nome_do_alimento",
-                            "quantidade": "quantidade_do_alimento",
-                            "calorias": "calorias_do_alimento",
-                            "proteinas": "proteinas_do_alimento",
-                            "carboidratos": "carboidratos_do_alimento",
-                            "gordura": "gordura_do_alimento",
+                            "quantidade": "quantidade_do_alimento" deve ser retornado em formato float,
+                            "calorias": "calorias_do_alimento"  deve ser retornado em formato float,
+                            "proteinas": "proteinas_do_alimento" deve ser retornado em formato float,
+                            "carboidratos": "carboidratos_do_alimento" deve ser retornado em formato float,
+                            "gordura": "gordura_do_alimento" deve ser retornado em formato float,
                             "unidade_medida": "unidade_de_medida_do_alimento",
                             "mensagem": "mensagem_de_explicacao"},
                         ...
