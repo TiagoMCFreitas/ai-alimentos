@@ -10,8 +10,9 @@ from agents.ai_refeicoes import GeradorDeRefeicao
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
+from auth.auth import VerifyAuth
 app = FastAPI()
+from fastapi import Depends
 
 app.add_middleware(
     CORSMiddleware,
@@ -40,8 +41,8 @@ class PlanoAlimentar(BaseModel):
 
 
 @app.post("/refeicao")
-async def post_refeicao(preferencias_usuario: PreferenciaUsuario):
-    print(preferencias_usuario)
+async def post_refeicao(preferencias_usuario: PreferenciaUsuario , token: str = Depends(VerifyAuth().verify())):
+    
     gerarRefeicoes = GeradorDeRefeicao().invoke(
         {
             "objetivo": preferencias_usuario.objetivo,
@@ -56,7 +57,7 @@ async def post_refeicao(preferencias_usuario: PreferenciaUsuario):
 
 
 @app.post("/plano")
-async def post_plano(preferencias_usuario: PlanoAlimentar):
+async def post_plano(preferencias_usuario: PlanoAlimentar, token: str = Depends(VerifyAuth().verify())):
     print(preferencias_usuario)
     gerarPlano = GeradorDePlanoAlimentar().invoke(
         {
@@ -71,7 +72,7 @@ async def post_plano(preferencias_usuario: PlanoAlimentar):
 
 
 @app.post("/processar_imagem")
-async def post_imagem(imagem: UploadFile = File(...)):
+async def post_imagem(imagem: UploadFile = File(...), token: str = Depends(VerifyAuth().verify())):
     conteudo = await imagem.read()
     base64_str = base64.b64encode(conteudo).decode("utf-8")
 
@@ -80,6 +81,17 @@ async def post_imagem(imagem: UploadFile = File(...)):
     )
     return gerarPlano
 
+class Token(BaseModel):
+    token: str
+@app.post("/login")
+async def login(token : Token):
+    auth = VerifyAuth()
+    status = {
+        "status" : True
+    }
+    
+    return status if auth.login(token.token) else False
+    
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8080, workers=2)
+    uvicorn.run("main:app", host="0.0.0.0", port=5000, reload=True)
