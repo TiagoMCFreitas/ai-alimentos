@@ -58,7 +58,7 @@ class GeradorDeRefeicao(BaseTool):
         csv_text = df.to_csv(index=False)
 
         llm = ChatGoogleGenerativeAI(
-            model="gemini-2.0-flash", temperature=0.4, api_key=google_api_key
+            model="gemini-2.5-flash", temperature=0.4, api_key=google_api_key
         )
         parser = JsonOutputParser(pydantic_object=AlimentosRefeicao)
 

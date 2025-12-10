@@ -47,7 +47,7 @@ class EntradaImagem(BaseModel):
 class InterpretadorDeImagem:
     def interpretar(self, image_part: EntradaImagem):
         genai.configure(api_key=google_api_key)
-        llm = genai.GenerativeModel(model_name="gemini-2.0-flash")
+        llm = genai.GenerativeModel(model_name="gemini-2.5-flash")
 
         template = """
                     Você é um nutricionista. Analise visualmente o conteúdo da imagem do prato de comida fornecida.
