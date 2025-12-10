@@ -7,15 +7,13 @@ import uvicorn
 from agents.ai_interpretador_imagem import InterpretadorDeImagem
 from agents.ai_plano import GeradorDePlanoAlimentar
 from agents.ai_refeicoes import GeradorDeRefeicao
-from auth.auth import VerifyAuth
 from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 app = FastAPI()
 from fastapi import Depends
- 
- 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
