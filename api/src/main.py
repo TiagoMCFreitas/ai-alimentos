@@ -14,7 +14,8 @@ from pydantic import BaseModel
 
 app = FastAPI()
 from fastapi import Depends
-
+ 
+ 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
